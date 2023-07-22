@@ -1,0 +1,134 @@
+[
+  {
+    "id": "1",
+    "name": "ABC University",
+    "image": "https://i.ibb.co/ZSPmd7q/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpgq/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg",
+    "admissionDates": "2023-08-15",
+    "events": "Annual Fest, Career Fair",
+    "researchHistory": "Established in 1950, renowned for scientific research",
+    "sports": "Football, Basketball",
+    "rating": 4.5,
+    "reviews": [
+      {
+        "username": "JohnDoe",
+        "rating": 4,
+        "comment": "Great college with excellent faculty!"
+      },
+      {
+        "username": "JaneSmith",
+        "rating": 5,
+        "comment": "Loved the campus and extracurricular activities!"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "name": "XYZ College",
+    "image": "https://i.ibb.co/ZSPmd7q/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg",
+    "admissionDates": "2023-09-01",
+    "events": "Cultural Fest, Hackathon",
+    "researchHistory": "Prominent in social sciences and humanities",
+    "sports": "Cricket, Tennis",
+    "rating": 4.2,
+    "reviews": [
+      {
+        "username": "MikeJohnson",
+        "rating": 4,
+        "comment": "Good college with diverse opportunities!"
+      },
+      {
+        "username": "SarahLee",
+        "rating": 4.5,
+        "comment": "Enjoyed the supportive academic environment!"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "name": "LMN Institute",
+    "image": "https://i.ibb.co/ZSPmd7q/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg",
+    "admissionDates": "2023-07-25",
+    "events": "Tech Fest, Alumni Meet",
+    "researchHistory": "Leader in engineering and technology research",
+    "sports": "Badminton, Athletics",
+    "rating": 4.8,
+    "reviews": [
+      {
+        "username": "EmilyWong",
+        "rating": 5,
+        "comment": "Best institute for engineering studies!"
+      },
+      {
+        "username": "DavidMiller",
+        "rating": 4.7,
+        "comment": "Impressive facilities and faculty!"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "name": "PQR College",
+    "image": "https://i.ibb.co/ZSPmd7q/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg",
+    "admissionDates": "2023-08-30",
+    "events": "Sports Meet, Literary Fest",
+    "researchHistory": "Known for its medical research contributions",
+    "sports": "Volleyball, Swimming",
+    "rating": 4.4,
+    "reviews": [
+      {
+        "username": "AlexBrown",
+        "rating": 4.5,
+        "comment": "Excellent medical programs and facilities!"
+      },
+      {
+        "username": "LindaJohnson",
+        "rating": 4,
+        "comment": "Good college, but needs improvement in infrastructure."
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "EFG University",
+    "image": "https://i.ibb.co/ZSPmd7q/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg",
+    "admissionDates": "2023-09-10",
+    "events": "Science Expo, Career Fair",
+    "researchHistory": "Innovative research in science and technology",
+    "sports": "Table Tennis, Chess",
+    "rating": 4.6,
+    "reviews": [
+      {
+        "username": "SophiaCarter",
+        "rating": 5,
+        "comment": "Top-notch research programs and faculty!"
+      },
+      {
+        "username": "RobertSmith",
+        "rating": 4.5,
+        "comment": "Impressed with the academic curriculum!"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "name": "MNO College",
+    "image": "https://i.ibb.co/ZSPmd7q/free-time-students-bachelor-s-campus-life-rhythm-five-friendly-students-are-walking.jpg",
+    "admissionDates": "2023-09-20",
+    "events": "Cultural Fest, Workshop",
+    "researchHistory": "Famous for arts and literature research",
+    "sports": "Hockey, Karate",
+    "rating": 4.3,
+    "reviews": [
+      {
+        "username": "OliviaDavis",
+        "rating": 4,
+        "comment": "Great college for arts enthusiasts!"
+      },
+      {
+        "username": "JamesJohnson",
+        "rating": 4.5,
+        "comment": "Dedicated faculty and supportive environment!"
+      }
+    ]
+  }
+]
