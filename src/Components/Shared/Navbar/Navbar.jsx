@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
 import Search from "../../Search";
+import { useContext } from "react";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
+  const handleLogout = () => {
+    logout()
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const menuItem = (
     <>
       <li className="hover:text-white">
@@ -21,7 +31,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="navbar bg-blue-500 text-white">
+      <div className="navbar bg-blue-500 px-7 text-white">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -53,7 +63,18 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{menuItem}</ul>
         </div>
         <div className="navbar-end">
-          <Link className="">Login</Link>
+          <div className="mr-3">
+            {user ? <Link>{user.displayName}</Link> : ""}
+          </div>
+          {user ? (
+            <button onClick={handleLogout} className="">
+              Logout
+            </button>
+          ) : (
+            <Link className="" to={"/user/login"}>
+              Login
+            </Link>
+          )}
         </div>
       </div>
       <Search></Search>

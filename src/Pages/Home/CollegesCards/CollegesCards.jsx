@@ -9,7 +9,7 @@ const CollegesCards = () => {
     fetch("collegedata.json")
       .then((res) => res.json())
       .then((data) => {
-        setColleges(data);
+        setColleges(data.slice(0, 3));
         console.log(data);
       });
   }, []);
