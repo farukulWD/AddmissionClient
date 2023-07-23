@@ -93,6 +93,7 @@ const Login = () => {
         >
           Login
         </button>
+        <Link to={"/user/reset"}>Forgot pass?</Link>
       </form>
       <div className="divider">OR</div>
       <GoogleLogin></GoogleLogin>

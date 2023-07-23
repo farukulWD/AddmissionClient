@@ -7,6 +7,10 @@ import MyCollege from "../Pages/MyCollege/MyCollege";
 import Register from "../Pages/Register/Register";
 import LoginAndRegister from "../Layout/LoginAndRegister";
 import Login from "../Pages/Login/Login";
+import ResetPass from "../Pages/Login/ResetPass";
+import Profile from "../Pages/Profile/Profile";
+import CollegeCard from "../Pages/Home/CollegesCards/CollegeCard";
+import CollegeDetails from "../Components/CollegeDetails/CollegeDetails";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +33,10 @@ export const router = createBrowserRouter([
         path: "/mycollege",
         element: <MyCollege></MyCollege>,
       },
+      {
+        path: "/singleCollege/:id",
+        element: <CollegeDetails></CollegeDetails>,
+      },
     ],
   },
   {
@@ -42,6 +50,14 @@ export const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>,
+      },
+      {
+        path: "reset",
+        element: <ResetPass></ResetPass>,
+      },
+      {
+        path: "profile",
+        element: <Profile></Profile>,
       },
     ],
   },

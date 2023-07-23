@@ -1,10 +1,15 @@
+import { Helmet } from "react-helmet";
 import Banner from "./Banner/Banner";
 import CollegesCards from "./CollegesCards/CollegesCards";
 import Gallery from "./Gallery/Gallery";
+import Review from "./Review/Review";
 
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       <section>
         <Banner></Banner>
       </section>
@@ -13,6 +18,9 @@ const Home = () => {
       </section>
       <section>
         <Gallery></Gallery>
+      </section>
+      <section className="my-[80px]">
+        <Review></Review>
       </section>
       <section className="my-[80px]">demo</section>
     </div>

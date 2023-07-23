@@ -2,16 +2,14 @@ import { useEffect, useState } from "react";
 import CollegeCard from "./CollegeCard";
 import Container from "../../../Components/Container";
 import Heading from "../../../Components/Heading";
+import axios from "axios";
 
 const CollegesCards = () => {
   const [colleges, setColleges] = useState([]);
   useEffect(() => {
-    fetch("collegedata.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setColleges(data.slice(0, 3));
-        console.log(data);
-      });
+    axios.get("http://localhost:5000/allColleges").then((response) => {
+      setColleges(response.data.slice(0, 3));
+    });
   }, []);
   return (
     <Container>

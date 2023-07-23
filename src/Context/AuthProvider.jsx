@@ -8,6 +8,7 @@ import {
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import app from "../Firebase/firebase.config";
 const auth = getAuth(app);
@@ -45,6 +46,9 @@ const AuthProvider = ({ children }) => {
   const googleLogin = () => {
     return signInWithPopup(auth, googleProvider);
   };
+  const resetPass = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
   const authInfo = {
     user,
     createUser,
@@ -52,6 +56,7 @@ const AuthProvider = ({ children }) => {
     login,
     logout,
     googleLogin,
+    resetPass,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

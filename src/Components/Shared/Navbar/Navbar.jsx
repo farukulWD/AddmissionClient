@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Search from "../../Search";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+  const [Title, setTitle] = useState("Home");
+  const location = useLocation();
   const handleLogout = () => {
     logout()
       .then(() => {})
@@ -29,6 +31,11 @@ const Navbar = () => {
     </>
   );
 
+  useEffect(() => {
+    const pageTitle = document.title;
+    setTitle(pageTitle);
+  }, [location]);
+  console.log(Title);
   return (
     <div>
       <div className="navbar bg-blue-500 px-7 text-white">
@@ -64,7 +71,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <div className="mr-3">
-            {user ? <Link>{user.displayName}</Link> : ""}
+            {user ? <Link to={"/user/profile"}>{user.displayName}</Link> : ""}
           </div>
           {user ? (
             <button onClick={handleLogout} className="">
@@ -77,7 +84,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      <Search></Search>
+      {Title === "Home" && <Search></Search>}
     </div>
   );
 };
