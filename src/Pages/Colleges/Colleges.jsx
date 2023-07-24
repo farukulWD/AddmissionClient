@@ -16,7 +16,7 @@ const Colleges = () => {
       });
   }, []);
   return (
-    <div>
+    <div className="mb-5">
       <Helmet>
         <title>Colleges</title>
       </Helmet>
