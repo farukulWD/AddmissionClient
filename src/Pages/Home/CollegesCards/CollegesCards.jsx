@@ -7,9 +7,11 @@ import axios from "axios";
 const CollegesCards = () => {
   const [colleges, setColleges] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/allColleges").then((response) => {
-      setColleges(response.data.slice(0, 3));
-    });
+    axios
+      .get("https://admission-server-topaz.vercel.app/allColleges")
+      .then((response) => {
+        setColleges(response.data.slice(0, 3));
+      });
   }, []);
   return (
     <Container>

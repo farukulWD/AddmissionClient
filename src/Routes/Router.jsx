@@ -11,6 +11,7 @@ import ResetPass from "../Pages/Login/ResetPass";
 import Profile from "../Pages/Profile/Profile";
 import CollegeCard from "../Pages/Home/CollegesCards/CollegeCard";
 import CollegeDetails from "../Components/CollegeDetails/CollegeDetails";
+import AdmissionForm from "../Pages/Admission/AdmissionForm";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "/singleCollege/:id",
         element: <CollegeDetails></CollegeDetails>,
+      },
+      {
+        path: "/admissionForm/:collegeName",
+        element: <AdmissionForm></AdmissionForm>,
       },
     ],
   },

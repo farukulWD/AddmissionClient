@@ -22,7 +22,6 @@ const Home = () => {
       <section className="my-[80px]">
         <Review></Review>
       </section>
-      <section className="my-[80px]">demo</section>
     </div>
   );
 };

@@ -32,10 +32,10 @@ const Navbar = () => {
   );
 
   useEffect(() => {
-    const pageTitle = document.title;
-    setTitle(pageTitle);
+    const pathname = location.pathname;
+    setTitle(pathname === "/" ? "Home" : pathname.substring(1));
   }, [location]);
-  console.log(Title);
+
   return (
     <div>
       <div className="navbar bg-blue-500 px-7 text-white">

@@ -17,13 +17,21 @@ const CollegeCard = ({ college }) => {
                 <span>{college?.admissionDates}</span>
               </div>
               <p className="font-semibold mt-3">Events</p>
-              <span>{college?.events}</span>
+              {college?.events.map((ev, index) => (
+                <span className="mr-2" key={index}>
+                  {ev.name},
+                </span>
+              ))}
             </div>
             <div>
               <p className="font-semibold">Research history</p>
               <span>{college?.researchHistory}</span>
               <p className="font-semibold mt-3">Sports</p>
-              <span>{college?.sports}</span>
+              {college?.sports.map((sp, index) => (
+                <span className="mr-2" key={index}>
+                  {sp.name},
+                </span>
+              ))}
             </div>
             <div className="">
               <Link
