@@ -13,6 +13,7 @@ import CollegeCard from "../Pages/Home/CollegesCards/CollegeCard";
 import CollegeDetails from "../Components/CollegeDetails/CollegeDetails";
 import AdmissionForm from "../Pages/Admission/AdmissionForm";
 import EditProfile from "../Pages/Profile/EditProfile";
+import PrivetRoute from "./PrivetRoute";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/mycollege",
-        element: <MyCollege></MyCollege>,
+        element: (
+          <PrivetRoute>
+            <MyCollege></MyCollege>
+          </PrivetRoute>
+        ),
       },
       {
         path: "/singleCollege/:id",
@@ -41,7 +46,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/admissionForm/:id",
-        element: <AdmissionForm></AdmissionForm>,
+        element: (
+          <PrivetRoute>
+            <AdmissionForm></AdmissionForm>
+          </PrivetRoute>
+        ),
       },
       {
         path: "profile",

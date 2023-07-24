@@ -23,7 +23,10 @@ const MyCollege = () => {
       comment,
     };
     axios
-      .post(`http://localhost:5000/addReview/${collegeName}`, newReview)
+      .post(
+        `https://admission-server-topaz.vercel.app/addReview/${collegeName}`,
+        newReview
+      )
       .then((res) => {
         console.log(res.data);
       });
@@ -31,7 +34,9 @@ const MyCollege = () => {
   useEffect(() => {
     if (user) {
       axios
-        .get(`http://localhost:5000/student/${user?.displayName}`)
+        .get(
+          `https://admission-server-topaz.vercel.app/student/${user?.displayName}`
+        )
         .then((res) => {
           setStudent(res.data);
           console.log(student);
@@ -43,7 +48,9 @@ const MyCollege = () => {
     // Check if both 'user' and 'student' are available
     if (user && student && student.collegeId) {
       axios
-        .get(`http://localhost:5000/myCollege/${student.collegeId}`)
+        .get(
+          `https://admission-server-topaz.vercel.app/myCollege/${student.collegeId}`
+        )
         .then((res) => {
           setCollege(res.data);
           console.log(res.data);

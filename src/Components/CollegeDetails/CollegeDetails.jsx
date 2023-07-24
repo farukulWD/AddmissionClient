@@ -8,9 +8,11 @@ const CollegeDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/college/${id}`).then((response) => {
-      setCollege(response.data);
-    });
+    axios
+      .get(`https://admission-server-topaz.vercel.app/college/${id}`)
+      .then((response) => {
+        setCollege(response.data);
+      });
   }, []);
   return (
     <div>

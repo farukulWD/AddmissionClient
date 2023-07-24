@@ -22,9 +22,11 @@ const AdmissionForm = () => {
 
   const [college, setCollege] = useState({});
   useEffect(() => {
-    axios.get(`http://localhost:5000/college/${id}`).then((res) => {
-      setCollege(res.data);
-    });
+    axios
+      .get(`https://admission-server-topaz.vercel.app/college/${id}`)
+      .then((res) => {
+        setCollege(res.data);
+      });
   }, []);
 
   const onSubmit = (data) => {
@@ -36,19 +38,21 @@ const AdmissionForm = () => {
       if (res.data.data.display_url) {
         data.image = res.data.data.display_url;
         data.collegeId = id;
-        axios.post("http://localhost:5000/admissions", data).then((res) => {
-          if (res.data.insertedId) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Admission success",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            reset();
-            navigate("/mycollege");
-          }
-        });
+        axios
+          .post("https://admission-server-topaz.vercel.app/admissions", data)
+          .then((res) => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Admission success",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              reset();
+              navigate("/mycollege");
+            }
+          });
       }
     });
 

@@ -13,8 +13,7 @@ const EditProfile = () => {
   const {
     register,
     handleSubmit,
-    reset,
-    watch,
+
     formState: { errors },
   } = useForm();
   const { user, updateUser } = useContext(AuthContext);
@@ -24,7 +23,10 @@ const EditProfile = () => {
     updateUser(data.name, data.email)
       .then(() => {
         axios
-          .patch(`http://localhost:5000/editProfile/${profile?._id}`, data)
+          .patch(
+            `https://admission-server-topaz.vercel.app/editProfile/${profile?._id}`,
+            data
+          )
           .then((res) => {
             setSpin(false);
             if (res) {
@@ -40,23 +42,13 @@ const EditProfile = () => {
       .catch((err) => {
         console.log(err);
       });
-
-    // const {
-    //   name,
-    //   subject,
-    //   email,
-    //   phone,
-    //   selectCollegeName,
-    //   address,
-    //   dateOfBirth,
-    //   image,
-    // } = data;
-    // console.log(data);
   };
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/student/${user?.displayName}`)
+      .get(
+        `https://admission-server-topaz.vercel.app/student/${user?.displayName}`
+      )
       .then((res) => {
         setProfile(res.data);
       });

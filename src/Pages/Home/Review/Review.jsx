@@ -7,7 +7,7 @@ const Review = () => {
   const [colleges, setColleges] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allColleges")
+    fetch("https://admission-server-topaz.vercel.app/allColleges")
       .then((res) => res.json())
       .then((data) => {
         setColleges(data);

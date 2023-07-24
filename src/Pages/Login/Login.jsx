@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import Swal from "sweetalert2";
@@ -12,6 +12,10 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
@@ -22,7 +26,7 @@ const Login = () => {
     const { email, password } = data;
     login(email, password)
       .then(() => {
-        navigate("/");
+        navigate(from);
         Swal.fire({
           icon: "success",
           title: "Success",

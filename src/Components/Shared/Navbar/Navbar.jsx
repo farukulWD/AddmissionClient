@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import Search from "../../Search";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
+import axios from "axios";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);

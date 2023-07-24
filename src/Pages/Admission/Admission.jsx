@@ -9,9 +9,11 @@ import Container from "../../Components/Container";
 const Admission = () => {
   const [colleges, setColleges] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/allColleges").then((response) => {
-      setColleges(response.data);
-    });
+    axios
+      .get("https://admission-server-topaz.vercel.app/allColleges")
+      .then((response) => {
+        setColleges(response.data);
+      });
   }, []);
   return (
     <Container>
