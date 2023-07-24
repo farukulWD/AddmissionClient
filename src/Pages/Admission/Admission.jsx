@@ -9,11 +9,9 @@ import Container from "../../Components/Container";
 const Admission = () => {
   const [colleges, setColleges] = useState([]);
   useEffect(() => {
-    axios
-      .get("https://admission-server-topaz.vercel.app/allColleges")
-      .then((response) => {
-        setColleges(response.data);
-      });
+    axios.get("http://localhost:5000/allColleges").then((response) => {
+      setColleges(response.data);
+    });
   }, []);
   return (
     <Container>
@@ -32,9 +30,9 @@ const Admission = () => {
             colleges.map((college) => (
               <h2
                 className="border border-blue-500 py-2 px-2 text-2xl font-semibold my-2 cursor-pointer"
-                key={college.name}
+                key={college?._id}
               >
-                <Link to={`/admissionForm/${college?.name}`}>
+                <Link to={`/admissionForm/${college?._id}`}>
                   {college?.name}
                 </Link>
               </h2>

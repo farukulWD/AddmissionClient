@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 const CollegeCard = ({ college }) => {
   return (
     <div className="">
-      <div className="card card-side bg-base-100 shadow-xl">
+      <div className="card md:card-side bg-base-100 shadow-xl">
         <figure>
           <img className="w-80" src={college?.image} alt="College image" />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{college?.name}</h2>
 
-          <div className="flex justify-between items-center">
+          <div className="md:flex justify-between items-center">
             <div>
               <div>
                 <p className="font-semibold">Admission date</p>

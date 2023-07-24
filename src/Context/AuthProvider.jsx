@@ -29,6 +29,13 @@ const AuthProvider = ({ children }) => {
       photoURL: photo,
     });
   };
+  const updateUser = (name, email) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      email: email,
+    });
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -57,6 +64,7 @@ const AuthProvider = ({ children }) => {
     logout,
     googleLogin,
     resetPass,
+    updateUser,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

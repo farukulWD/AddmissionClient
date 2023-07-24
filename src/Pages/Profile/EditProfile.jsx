@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Container from "../../Components/Container";
 import { AuthContext } from "../../Context/AuthProvider";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
-const keyImage = import.meta.env.VITE_Image_key;
-const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${keyImage}`;
 
-const AdmissionForm = () => {
+const EditProfile = () => {
+  const [spin, setSpin] = useState(false);
+  const [profile, setProfile] = useState({});
   const navigate = useNavigate();
   const {
     register,
@@ -17,40 +17,29 @@ const AdmissionForm = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const { user } = useContext(AuthContext);
-  const { id } = useParams();
-
-  const [college, setCollege] = useState({});
-  useEffect(() => {
-    axios.get(`http://localhost:5000/college/${id}`).then((res) => {
-      setCollege(res.data);
-    });
-  }, []);
+  const { user, updateUser } = useContext(AuthContext);
 
   const onSubmit = (data) => {
-    const formData = new FormData();
-    formData.append("image", data.image[0]);
-    console.log(formData);
-
-    axios.post(imageHostingUrl, formData).then((res) => {
-      if (res.data.data.display_url) {
-        data.image = res.data.data.display_url;
-        data.collegeId = id;
-        axios.post("http://localhost:5000/admissions", data).then((res) => {
-          if (res.data.insertedId) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Admission success",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            reset();
-            navigate("/mycollege");
-          }
-        });
-      }
-    });
+    setSpin(true);
+    updateUser(data.name, data.email)
+      .then(() => {
+        axios
+          .patch(`http://localhost:5000/editProfile/${profile?._id}`, data)
+          .then((res) => {
+            setSpin(false);
+            if (res) {
+              Swal.fire({
+                icon: "success",
+                title: "Success",
+                text: "profile update has been successful",
+              });
+            }
+            navigate("/profile");
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // const {
     //   name,
@@ -65,6 +54,13 @@ const AdmissionForm = () => {
     // console.log(data);
   };
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/student/${user?.displayName}`)
+      .then((res) => {
+        setProfile(res.data);
+      });
+  }, []);
   return (
     <Container>
       <form
@@ -87,11 +83,10 @@ const AdmissionForm = () => {
           <input
             type="text"
             className="w-full p-2 border rounded border-gray-300  focus:outline-none focus:border-blue-500"
-            defaultValue={college?.name}
+            defaultValue={profile?.selectCollegeName}
             {...register("selectCollegeName", {
               required: "selectCollegeName is required",
             })}
-            readOnly
           />
           {errors.selectCollegeName && (
             <span className="text-red-500">
@@ -108,27 +103,17 @@ const AdmissionForm = () => {
             defaultValue={user?.email}
             {...register("email", { required: "Email is required" })}
             required
-            readOnly
           />
           {errors.email && (
             <span className="text-red-500">{errors.email.message}</span>
           )}
         </div>
-        <div className="mb-4">
-          <input
-            type="tel"
-            className="w-full p-2 border rounded border-gray-300 focus:outline-none focus:border-blue-500"
-            placeholder="Phone Number"
-            {...register("phone", { required: "Phone is required" })}
-          />
-          {errors.email && (
-            <span className="text-red-500">{errors.email.message}</span>
-          )}
-        </div>
+
         <div className="mb-4">
           <input
             type="text"
             className="w-full p-2 border rounded border-gray-300  focus:outline-none focus:border-blue-500"
+            defaultValue={profile?.address}
             placeholder="Address"
             {...register("address", { required: "Address is required" })}
           />
@@ -136,42 +121,17 @@ const AdmissionForm = () => {
             <span className="text-red-500">{errors.address.message}</span>
           )}
         </div>
-        <div className="mb-4">
-          <input
-            type="date"
-            placeholder="Date Of Birth"
-            className="w-full p-2 border rounded border-gray-300 focus:outline-none focus:border-blue-500"
-            {...register("dateOfBirth", {
-              required: "dateOfBirth is required",
-            })}
-          />
 
-          {errors.dateOfBirth ? (
-            <span className="text-red-500">{errors.dateOfBirth.message}</span>
-          ) : (
-            <span className="">Date Of Birth</span>
-          )}
-        </div>
         <div className="mb-4">
           <input
             type="text"
             className="w-full p-2 border rounded border-gray-300 focus:outline-none focus:border-blue-500"
             placeholder="Subject"
+            defaultValue={profile?.subject}
             {...register("subject", { required: "Subject is required" })}
           />
           {errors.subject && (
             <span className="text-red-500">{errors.subject.message}</span>
-          )}
-        </div>
-        <div className="mb-4">
-          <input
-            type="file"
-            className="w-full p-2 border rounded border-gray-300  focus:outline-none focus:border-blue-500"
-            accept="image/*"
-            {...register("image", { required: "Image is required" })}
-          />
-          {errors.image && (
-            <span className="text-red-500">{errors.image.message}</span>
           )}
         </div>
 
@@ -179,11 +139,15 @@ const AdmissionForm = () => {
           type="submit"
           className="bg-blue-500 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
-          Submit
+          {spin ? (
+            <span className="loading loading-spinner loading-md"></span>
+          ) : (
+            "Save Change"
+          )}
         </button>
       </form>
     </Container>
   );
 };
 
-export default AdmissionForm;
+export default EditProfile;

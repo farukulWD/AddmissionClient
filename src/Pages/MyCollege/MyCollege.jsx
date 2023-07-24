@@ -23,32 +23,37 @@ const MyCollege = () => {
       comment,
     };
     axios
-      .post(
-        `https://admission-server-topaz.vercel.app/addReview/${collegeName}`,
-        newReview
-      )
+      .post(`http://localhost:5000/addReview/${collegeName}`, newReview)
       .then((res) => {
         console.log(res.data);
       });
   };
   useEffect(() => {
-    axios
-      .get(`https://admission-server-topaz.vercel.app/student/${user?.email}`)
-      .then((res) => {
-        setStudent(res.data);
-      });
+    if (user) {
+      axios
+        .get(`http://localhost:5000/student/${user?.displayName}`)
+        .then((res) => {
+          setStudent(res.data);
+          console.log(student);
+        });
+    }
   }, []);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://admission-server-topaz.vercel.app/myCollege/${student?.selectCollegeName}`
-      )
-      .then((res) => {
-        setCollege(res.data);
-        console.log(res.data);
-      });
-  }, [student]);
+    // Check if both 'user' and 'student' are available
+    if (user && student && student.collegeId) {
+      axios
+        .get(`http://localhost:5000/myCollege/${student.collegeId}`)
+        .then((res) => {
+          setCollege(res.data);
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching college data:", error);
+        });
+    }
+  }, [student, user]);
+
   return (
     <div>
       <Helmet>
